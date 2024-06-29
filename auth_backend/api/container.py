@@ -16,7 +16,7 @@ async def resource_pool(db_settings: DBSettings,) -> Pool:
 
 
 class Container(containers.DeclarativeContainer):
-    wiring_config = containers.WiringConfiguration(packages=["reservation_meeting_instructions_api.api"])
+    wiring_config = containers.WiringConfiguration(packages=["auth_backend.api"])
 
     db_settings = providers.Singleton(DBSettings)
     pool = providers.Resource(resource_pool, db_settings)
