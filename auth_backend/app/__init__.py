@@ -4,6 +4,7 @@ from .users import (
     GetUserByTokenInteractor,
     UserEmailDoesNotExistError,
     UserLoginInteractor,
+    PasswordDoesNotMatchError,
     PasswordHasher,
     UserRegistrateInteractor,
     UserRegistrationInput,
