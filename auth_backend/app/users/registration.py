@@ -1,6 +1,7 @@
 from auth_backend.core import User
 from .abc import UsersRepository, PasswordHasher
 from .common import AuthData
+from .exceptions import EmailAlreadyExistsError
 
 
 class UserRegistrationInput(AuthData):
@@ -19,6 +20,10 @@ class UserRegistrateInteractor:
     async def __call__(self, registration_input: UserRegistrationInput) -> User:
         registration_input.hash(self._password_hasher)
         user = registration_input.to_user()
+
+        user_in_db = await self._repository.get_by_email(user.email)
+        if user_in_db:
+            raise EmailAlreadyExistsError
 
         await self._repository.create(user)
 

@@ -5,3 +5,6 @@ class UserEmailDoesNotExistError(Exception):
 class PasswordDoesNotMatchError(Exception):
     pass
 
+
+class EmailAlreadyExistsError(Exception):
+    pass

@@ -1,5 +1,6 @@
 from .users import (
     AuthData,
+    EmailAlreadyExistsError,
     GetUserByTokenInteractor,
     UserEmailDoesNotExistError,
     UserLoginInteractor,
