@@ -1,5 +1,3 @@
-import abc
-
 from auth_backend.core import User
 from .abc import UsersRepository, PasswordHasher
 from .common import AuthData
