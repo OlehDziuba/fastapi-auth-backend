@@ -4,9 +4,9 @@ import os
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
-from .container import Container
-from .users import router as users_router
-from .settings import ServerSettings
+from auth_backend.api.container import Container
+from auth_backend.api.users import router as users_router
+from auth_backend.api.settings import ServerSettings
 
 
 @contextlib.asynccontextmanager
