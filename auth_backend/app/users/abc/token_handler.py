@@ -15,6 +15,10 @@ class UserTokenPayload(pydantic.BaseModel):
         return cls.model_validate({"email": user.email})
 
 
+class InvalidTokenError(Exception):
+    pass
+
+
 class UserTokenHandler(abc.ABC):
     @abc.abstractmethod
     def generate(self, payload: UserTokenPayload) -> str:

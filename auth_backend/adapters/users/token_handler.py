@@ -1,7 +1,7 @@
 import jwt
 import pydantic_settings
 
-from auth_backend.app import UserTokenHandler, UserTokenPayload
+from auth_backend.app import UserTokenHandler, UserTokenPayload, InvalidTokenError
 
 
 class JWTHandlerSettings(pydantic_settings.BaseSettings):
@@ -17,4 +17,7 @@ class JWTHandler(UserTokenHandler):
         return jwt.encode(payload.model_dump(mode="json"), self._settings.secret_key, algorithm="HS256")
 
     def decode(self, token: str) -> UserTokenPayload:
-        return jwt.decode(token, self._settings.secret_key, algorithms=["HS256"])
+        try:
+            return jwt.decode(token, self._settings.secret_key, algorithms=["HS256"])
+        except jwt.InvalidTokenError:
+            raise InvalidTokenError

@@ -1,4 +1,4 @@
-from .abc import UserTokenHandler, UserTokenPayload, UsersRepository, PasswordHasher
+from .abc import UserTokenHandler, UserTokenPayload, UsersRepository, PasswordHasher, InvalidTokenError
 from .common import AuthData
 from .exceptions import UserEmailDoesNotExistError, PasswordDoesNotMatchError, EmailAlreadyExistsError
 from .get_by_token import GetUserByTokenInteractor
