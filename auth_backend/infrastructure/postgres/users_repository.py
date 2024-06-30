@@ -19,7 +19,7 @@ class AsyncpgUsersRepository(UsersRepository):
             """, user_id
         )
 
-        return User.model_validate(user_record) if user_record else None
+        return User.model_validate(dict(user_record)) if user_record else None
 
     async def get_by_email(self, email: str) -> User | None:
         user_record = await self._pool.fetchrow(
@@ -30,7 +30,7 @@ class AsyncpgUsersRepository(UsersRepository):
             """, email
         )
 
-        return User.model_validate(user_record) if user_record else None
+        return User.model_validate(dict(user_record)) if user_record else None
 
     async def create(self, user: User) -> None:
         await self._pool.execute(
