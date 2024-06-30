@@ -5,7 +5,7 @@ from auth_backend.app import UserTokenHandler, UserTokenPayload, InvalidTokenErr
 
 
 class JWTHandlerSettings(pydantic_settings.BaseSettings):
-    model_config = pydantic_settings.SettingsConfigDict(env_prefix="JWT_SECRET_", case_sensitive=False)
+    model_config = pydantic_settings.SettingsConfigDict(env_prefix="JWT_", case_sensitive=False)
     secret_key: str
 
 
