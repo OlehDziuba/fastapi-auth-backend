@@ -11,5 +11,6 @@ class AuthData(pydantic.BaseModel):
         self.password = hasher.hash(self.password)
 
     @pydantic.field_validator("email")
-    def _normalize_email(self, email: str) -> str:
+    @classmethod
+    def _normalize_email(cls, email: str) -> str:
         return email.lower().strip()
