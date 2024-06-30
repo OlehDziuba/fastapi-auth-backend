@@ -18,4 +18,4 @@ class UserResponse(pydantic.BaseModel):
 
     @classmethod
     def from_user(cls: Self, user: User) -> Self:
-        return cls.model_dump(**user.model_dump())
+        return cls.model_validate(user.model_dump())
