@@ -17,7 +17,7 @@ class UserLoginInteractor:
         user = await self._get_user(auth_data)
         token = self._generate_token(user)
 
-        return token
+        return "Bearer " + token
 
     async def _get_user(self, auth_data: AuthData) -> User:
         user = await self._repository.get_by_email(auth_data.email)
