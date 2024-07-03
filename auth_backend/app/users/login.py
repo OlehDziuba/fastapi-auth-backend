@@ -1,3 +1,5 @@
+import datetime
+
 from auth_backend.core import User
 
 from .abc import UsersRepository, UserTokenHandler, UserTokenPayload, PasswordHasher
@@ -16,6 +18,7 @@ class UserLoginInteractor:
 
         user = await self._get_user(auth_data)
         token = self._generate_token(user)
+        await self._update_last_login_at(user)
 
         return "Bearer " + token
 
@@ -33,3 +36,8 @@ class UserLoginInteractor:
         token = self._token_handler.generate(token_payload)
 
         return token
+
+    async def _update_last_login_at(self, user: User) -> None:
+        user.last_login_at = datetime.datetime.utcnow()
+
+        await self._repository.update(user)
