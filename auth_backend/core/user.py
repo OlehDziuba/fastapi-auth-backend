@@ -13,3 +13,8 @@ class User(pydantic.BaseModel):
     created_at: datetime = pydantic.Field(default_factory=datetime.utcnow)
     updated_at: datetime = pydantic.Field(default_factory=datetime.utcnow)
     last_login_at: datetime = pydantic.Field(default_factory=datetime.utcnow)
+
+    @pydantic.field_validator("email", mode="after")
+    @classmethod
+    def _normalize_email(cls, value: str) -> str:
+        return value.strip().lower()
